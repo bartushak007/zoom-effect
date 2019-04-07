@@ -15,21 +15,23 @@ const ZoomArea = ({
   areaHeight,
   loupeSize,
   loupeHide,
-  borderR
+  borderR,
+  setBorderR,
+  loupeShape
   }) => {  
-  
+
   return (    
     <div onClick={handleMouseClick} onMouseMove={handleMouseMove} onMouseOut={handleMouseOver} className="zoom-area" >
       <Image className="zoom-area__image" {...{ src, alt }} />
-      <Loupe {...{ mouseX, mouseY, src, areaWidth, areaHeight, loupeSize, loupeHide, borderR }} />
+      {/* <Loupe {...{ mouseX, mouseY, src, areaWidth, areaHeight, loupeSize, loupeHide, borderR }} /> */}
       {children}
     </div>    
   )
 }
+ZoomArea.Loupe= Loupe;
 
 ZoomArea.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string
+  activeSlide: PropTypes.objectOf(PropTypes.string),  
 };
 
 export default ZoomArea;

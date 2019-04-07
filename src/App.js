@@ -54,27 +54,29 @@ const App = () => {
     setLoupeHide('none');    
   }
 
-  const handleMouseClick = () => {
+  const handleMouseClick = () => {    
     setBorderR(borderR === 50 ? 3 : 50);    
   }
 
+  const loupeShape = 'circle'; //or 'square'
+
   return (
     <ZoomGallery 
-    {...{
-      changeSlide,
-      activeSlide,
-      images,
-      handleMouseMove,
-      handleMouseOver,
-      handleMouseClick,
-      mouseX,
-      mouseY,
-      areaWidth,
-      areaHeight,
-      loupeSize,
-      loupeHide,
-      borderR,
-    }}
+    // {...{
+    //   changeSlide,
+    //   activeSlide,
+    //   images,
+    //   handleMouseMove,
+    //   handleMouseOver,
+    //   handleMouseClick,
+    //   mouseX,
+    //   mouseY,
+    //   areaWidth,
+    //   areaHeight,
+    //   loupeSize,
+    //   loupeHide,
+    //   borderR,
+    // }}
     >      
       <ZoomGallery.ZoomArea 
         {...{
@@ -82,15 +84,32 @@ const App = () => {
           handleMouseMove,
           handleMouseOver,
           handleMouseClick,
-          mouseX,
-          mouseY,
-          areaWidth,
-          areaHeight,
-          loupeSize,
-          loupeHide,
-          borderR,
+          // mouseX,
+          // mouseY,
+          // areaWidth,
+          // areaHeight,
+          // loupeSize,
+          // loupeHide,
+          // borderR,
+          // setBorderR,
+          // loupeShape
         }}
-      /> 
+      >
+      <ZoomGallery.ZoomArea.Loupe 
+        {...{ 
+          mouseX, 
+          mouseY, 
+          areaWidth, 
+          activeSlide, 
+          areaHeight, 
+          loupeSize, 
+          loupeHide, 
+          borderR,
+          loupeShape,
+          setBorderR 
+        }}
+      />
+      </ZoomGallery.ZoomArea> 
       <ZoomGallery.GalleryArea 
         changeSlide={changeSlide}
         images={images.filter(image => image !== activeSlide)} 

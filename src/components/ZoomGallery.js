@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ZoomArea from './ZoomArea';
 import GalleryArea from './GalleryArea';
 import PropTypes from 'prop-types';
 
-const ZoomGallery = ({ images }) => {
-  const [ activeSlide, setActiveSlide ] = useState(images[0]);
-
-  const changeSlide = (slide) => {
-    setActiveSlide(slide);
-  };
-
-  return (
-    <>
-      <ZoomArea 
-        src={activeSlide.src} 
-        alt={activeSlide.alt} 
-      />
-      <GalleryArea 
-        changeSlide={changeSlide}
-        images={images.filter(image => image !== activeSlide)} 
-      />
+const ZoomGallery = ({ 
+  children, 
+  images,   
+  changeSlide,
+  activeSlide, 
+  areaWidth,
+  areaHeight, 
+  mouseX,
+  mouseY,
+  loupeSize,
+  loupeHide,
+  borderR,
+  handleMouseMove,
+  handleMouseOver,
+  handleMouseClick  
+  }) => {    
+  return (    
+    <>      
+      {children}
     </>
   )
 }
+
+ZoomGallery.GalleryArea = GalleryArea;
+ZoomGallery.ZoomArea = ZoomArea;
 
 ZoomGallery.propTypes = {
   images: PropTypes.array.isRequired,  

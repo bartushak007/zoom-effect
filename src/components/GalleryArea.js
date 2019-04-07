@@ -2,7 +2,11 @@ import React from 'react';
 import Image from './Image';
 import PropTypes from 'prop-types';
 
-const GalleryArea = ({ images, changeSlide }) => {
+const GalleryArea = ({ 
+  children, 
+  images, 
+  changeSlide  
+}) => {
   return (
     <div className='gallery-area'>
       {images.map(image => (
@@ -10,6 +14,7 @@ const GalleryArea = ({ images, changeSlide }) => {
             <Image className='gallery-area__image' {...image} />
           </div>
       ))}
+      {children}
     </div>
   )
 }

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import ZoomGallery from './components/ZoomGallery';
 
-const data = [
+
+
+const images = [
   {
     src:'/images/1.jpg',
     alt:'',
@@ -21,11 +23,80 @@ const data = [
   },
 ]
 
-const App = () => {  
-  return (
-    <ZoomGallery images={data}/>
-  );
+const App = () => {   
+  const [ activeSlide, setActiveSlide ] = useState(images[0]);  
+  const [mouseX, setMouseX] = useState(110);
+  const [mouseY, setMouseY] = useState(110);
+  const [areaWidth, setAreaWidth] = useState(110);
+  const [areaHeight, setAreaHeight] = useState(110);
+  const [loupeSize, setLoupeSize] = useState();  
+  const [loupeHide, setLoupeHide] = useState();
+  const [borderR , setBorderR  ] = useState(50); 
   
+  const changeSlide = (slide) => {
+    setActiveSlide(slide);
+  };
+
+  const handleMouseMove = (event) => {
+    const { offsetX: x } = event.nativeEvent;
+    const { offsetY: y } = event.nativeEvent;
+    const {width, height} = event.target;  
+
+    setMouseX(x);
+    setMouseY(y);
+    setAreaWidth(width);
+    setAreaHeight(height);
+    setLoupeSize(areaWidth/4);
+    setLoupeHide('block');    
+  };
+
+  const handleMouseOver = () => {
+    setLoupeHide('none');    
+  }
+
+  const handleMouseClick = () => {
+    setBorderR(borderR === 50 ? 3 : 50);    
+  }
+
+  return (
+    <ZoomGallery 
+    {...{
+      changeSlide,
+      activeSlide,
+      images,
+      handleMouseMove,
+      handleMouseOver,
+      handleMouseClick,
+      mouseX,
+      mouseY,
+      areaWidth,
+      areaHeight,
+      loupeSize,
+      loupeHide,
+      borderR,
+    }}
+    >      
+      <ZoomGallery.ZoomArea 
+        {...{
+          activeSlide,
+          handleMouseMove,
+          handleMouseOver,
+          handleMouseClick,
+          mouseX,
+          mouseY,
+          areaWidth,
+          areaHeight,
+          loupeSize,
+          loupeHide,
+          borderR,
+        }}
+      /> 
+      <ZoomGallery.GalleryArea 
+        changeSlide={changeSlide}
+        images={images.filter(image => image !== activeSlide)} 
+      /> 
+    </ZoomGallery>
+  );  
 }
 
 export default App;

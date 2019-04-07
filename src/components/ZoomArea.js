@@ -8,22 +8,12 @@ const ZoomArea = ({
   activeSlide: {src, alt},
   handleMouseClick,
   handleMouseMove,
-  handleMouseOver,
-  mouseX,    
-  mouseY,
-  areaWidth,
-  areaHeight,
-  loupeSize,
-  loupeHide,
-  borderR,
-  setBorderR,
-  loupeShape
+  handleMouseOver,  
   }) => {  
 
   return (    
     <div onClick={handleMouseClick} onMouseMove={handleMouseMove} onMouseOut={handleMouseOver} className="zoom-area" >
-      <Image className="zoom-area__image" {...{ src, alt }} />
-      {/* <Loupe {...{ mouseX, mouseY, src, areaWidth, areaHeight, loupeSize, loupeHide, borderR }} /> */}
+      <Image className="zoom-area__image" {...{ src, alt }} />      
       {children}
     </div>    
   )

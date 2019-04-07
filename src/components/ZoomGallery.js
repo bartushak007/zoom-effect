@@ -4,22 +4,7 @@ import GalleryArea from './GalleryArea';
 // import PropTypes from 'prop-types';
 
 const ZoomGallery = ({ 
-  children, 
-  images,   
-  changeSlide,
-  activeSlide, 
-  areaWidth,
-  areaHeight, 
-  mouseX,
-  mouseY,
-  loupeSize,
-  loupeHide,
-  borderR,
-  setBorderR,
-  handleMouseMove,
-  handleMouseOver,
-  handleMouseClick,
-  loupeShape  
+  children,  
   }) => {    
   return (    
     <>      

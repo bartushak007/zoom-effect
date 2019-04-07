@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import ZoomGallery from './components/ZoomGallery';
 
-
-
 const images = [
   {
     src:'/images/1.jpg',
@@ -25,10 +23,10 @@ const images = [
 
 const App = () => {   
   const [ activeSlide, setActiveSlide ] = useState(images[0]);  
-  const [mouseX, setMouseX] = useState(110);
-  const [mouseY, setMouseY] = useState(110);
-  const [areaWidth, setAreaWidth] = useState(110);
-  const [areaHeight, setAreaHeight] = useState(110);
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+  const [areaWidth, setAreaWidth] = useState(0);
+  const [areaHeight, setAreaHeight] = useState(0);
   const [loupeSize, setLoupeSize] = useState();  
   const [loupeHide, setLoupeHide] = useState();
   const [borderR , setBorderR  ] = useState(50); 
@@ -58,57 +56,32 @@ const App = () => {
     setBorderR(borderR === 50 ? 3 : 50);    
   }
 
-  const loupeShape = 'circle'; //or 'square'
+  const loupeShape = 'circle'; //or 'square' 
 
   return (
-    <ZoomGallery 
-    // {...{
-    //   changeSlide,
-    //   activeSlide,
-    //   images,
-    //   handleMouseMove,
-    //   handleMouseOver,
-    //   handleMouseClick,
-    //   mouseX,
-    //   mouseY,
-    //   areaWidth,
-    //   areaHeight,
-    //   loupeSize,
-    //   loupeHide,
-    //   borderR,
-    // }}
-    >      
+    <ZoomGallery>      
       <ZoomGallery.ZoomArea 
         {...{
           activeSlide,
           handleMouseMove,
           handleMouseOver,
-          handleMouseClick,
-          // mouseX,
-          // mouseY,
-          // areaWidth,
-          // areaHeight,
-          // loupeSize,
-          // loupeHide,
-          // borderR,
-          // setBorderR,
-          // loupeShape
+          handleMouseClick,          
         }}
       >
-      <ZoomGallery.ZoomArea.Loupe 
-        {...{ 
-          mouseX, 
-          mouseY, 
-          areaWidth, 
-          activeSlide, 
-          areaHeight, 
-          loupeSize, 
-          loupeHide, 
-          borderR,
-          loupeShape,
-          setBorderR 
-        }}
-      />
+        <ZoomGallery.ZoomArea.Loupe 
+          {...{ 
+            mouseX, 
+            mouseY, 
+            areaWidth, 
+            activeSlide, 
+            areaHeight, 
+            loupeSize, 
+            loupeHide, 
+            borderR,
+            loupeShape,
+            setBorderR 
+          }}
+        />
       </ZoomGallery.ZoomArea> 
       <ZoomGallery.GalleryArea 
         changeSlide={changeSlide}
